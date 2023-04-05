@@ -67,7 +67,7 @@ class CustomConfig(Config):
     IMAGES_PER_GPU = 2
 
     # Number of classes (including background)
-    NUM_CLASSES = 1 + 2  # Background + number of classes (Here, 2)
+    NUM_CLASSES = 1 + 1  # Background + number of classes (Here, 2)
 
     # Number of training steps per epoch
     STEPS_PER_EPOCH = 100
@@ -88,8 +88,8 @@ class CustomDataset(utils.Dataset):
         subset: Subset to load: train or val
         """
         # Add classes according to the numbe of classes required to detect
-        self.add_class("custom", 1, "object1")
-        self.add_class("custom",2,"object2")
+        self.add_class("custom", 1, "White Oyster Mushroom")
+        #self.add_class("custom",2,"object2")
 
         # Train or validation dataset?
         assert subset in ["train", "val"]
@@ -133,7 +133,7 @@ class CustomDataset(utils.Dataset):
             #Add the classes according to the requirement
             for n in custom:
                 try:
-                    if n['label']=='object1':
+                    if n['label']=='White Oyster Mushroom':
                         num_ids.append(1)
                     elif n['label']=='object2':
                         num_ids.append(2)
